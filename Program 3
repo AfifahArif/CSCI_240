@@ -37,8 +37,7 @@ int main()
 		cout << "Please Input the number of courses: " ; 
 		cin >> numcourse;
 
-		for (int i=0; i<numcourse;i++)
-		{
+		for (int i=0; i<numcourse;i++){
 			int g;
 
 			cout << " Please input grade " << i+1<< endl; 
