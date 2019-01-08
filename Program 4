@@ -1,0 +1,69 @@
+/***
+CSCI 240     Program 4     Fall 2017
+Programmer: Afifah Arif
+Date Due: September 28, 2017
+Purpose: This program will simulate a single game of Craps.
+***/
+
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() 
+{
+	int roll1;
+	int roll2;
+	int startingRoll;
+	int point;
+	int currentRoll;
+
+	const int TWO=2;
+	const int THREE=3;
+	const int SEVEN=7;
+	const int ELEVEN=11;
+	const int TWELVE=12;
+
+	srand(time(0));
+
+	roll1=rand() % 7 + 1;
+	roll2=rand() % 7 + 1;
+	startingRoll=roll1+roll2;
+
+	if (startingRoll==TWO||startingRoll==THREE||startingRoll==TWELVE) 
+	{
+		cout<<"Player Rolled: "<<roll1<<" + "<<roll2<<" = "<<startingRoll<<endl;
+		cout<<endl<<"You lost!";
+		return(0);
+	}
+	else if (startingRoll==SEVEN||startingRoll==ELEVEN){
+		cout<<"Player Rolled: "<<roll1<<" + "<<roll2<<" = "<<startingRoll<<endl;
+		cout<<endl<<"You won!";
+		return(0);
+	}
+	else{
+		cout<<"Player Rolled: "<<roll1<<" + "<<roll2<<" = "<<startingRoll<<endl;
+		cout<<"\nThe point is "<<startingRoll<<"\n"<<endl;
+		point=startingRoll;
+	}
+
+	while (currentRoll!=SEVEN)  
+	{
+		roll1=rand() % 7 + 1;
+		roll2=rand() % 7 + 1;
+		currentRoll=roll1+roll2;
+		if (currentRoll==point) {
+			cout<<"Player Rolled: "<<roll1<<" + "<<roll2<<" = "<<currentRoll<<endl;
+			cout<<endl<<"You rolled your point! You won!";
+			return(0);
+		}
+		else
+		cout<<"Player Rolled: "<<roll1<<" + "<<roll2<<" = "<<currentRoll<<endl;	
+	}
+
+	cout<<endl<<"You seven'd out and lost!";
+	return(0);
+ 
+}
