@@ -1,0 +1,59 @@
+/***
+CSCI 240     Program 2     Fall 2017
+
+Programmer: Afifah Arif
+
+Date Due: September 15, 2017
+
+Purpose: This program will expand on program 1 to include a calculation of the 
+	baseball player's slugging percentage.
+***/
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	int hits;
+	int doubles;
+	int triples;
+	int runs;
+	int totalSingles;
+
+	float totalBases;
+	float atBats;
+	float slugPer;
+
+	cout << "Enter the number of hits: ";
+	cin >> hits;
+
+	cout << "Enter the number of doubles: ";
+	cin >> doubles;
+
+	cout << "Enter the number of triples: ";
+	cin >> triples;
+
+	cout << "Enter the number of home runs: ";
+	cin >> runs;
+
+	cout << "Enter the number of at bats: ";
+	cin >> atBats;
+
+	totalSingles = hits - doubles - triples - runs;
+
+	totalBases = totalSingles + (doubles*2) + (triples*3) + (runs*4);
+
+	slugPer = totalBases / atBats;
+
+	cout << endl << endl;
+	cout << "Singles: " << totalSingles;
+	cout << "Doubles: " << doubles;
+	cout << "Triples: " << triples;
+	cout << "Runs: " << runs << endl << endl;
+	cout << "Total Bases: " << totalBases << endl << endl;
+	cout << "Slugging Percentage: " << setprecision(3) << slugPer;
+
+	return 0; 
+}
