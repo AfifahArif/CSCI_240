@@ -1,0 +1,47 @@
+/***
+CSCI 240     Program 1     Fall 2017
+Programmer: Afifah Arif
+Date Due: September 8, 2017
+Purpose: This program calculates the number of singles and total 
+	number of bases for a baseball player.
+***/
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() 
+{
+	int hits;
+	int doubles;
+	int triples;
+	int runs;
+	int totalSingles;
+	int totalBases;
+	
+	cout << "Enter the number of hits: ";
+	cin >> hits;
+
+	cout << "Enter the number of doubles: ";
+	cin >> doubles;
+
+	cout << "Enter the number of triples: ";
+	cin >> triples;
+
+	cout << "Enter the number of home runs: ";
+	cin >> runs;
+
+	totalSingles = hits - doubles - triples - runs;
+
+	totalBases = totalSingles + (doubles*2) + (triples*3) + (runs*4);
+
+	cout << endl << endl;
+	cout << "Singles: " << totalSingles;
+	cout << "Doubles: " << doubles;
+	cout << "Triples: " << triples;
+	cout << "Runs: " << runs << endl << endl;
+	cout << "Total Bases: " << totalBases;
+
+	return 0;
+}
