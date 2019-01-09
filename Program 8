@@ -1,0 +1,99 @@
+/***
+CSCI 240     Program 8     Fall 2017
+Programmer: Afifah Arif
+Date Due: November 24, 2017
+Purpose: This program builds, sorts and prints arrays.
+***/
+
+#include <ctime>
+#include <cstdlib>
+#include <string>
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class Die
+{
+	public:
+	Die();
+	void roll();
+	void draw();
+	int getVal();
+	private:
+	int face;
+	static const int NUM_SIDES;
+};
+
+const int Die::NUM_SIDES = 6;
+
+int main()
+{
+	int numRolls, sumOfRoll, pScore = 0, dScore = 0;
+	char evenOrOdd;
+
+	srand(35);
+
+	Die die1, die2;
+
+	cout << "How many times should the dice be rolled? ";
+	cin >> numRolls;
+
+	cout << endl << "Will the sum of the rolls be (E)ven or (O)dd? ";
+	cin >> evenOrOdd;
+
+	evenOrOdd = toupper(evenOrOdd);
+
+	for( int cnt = 1; cnt <= numRolls; cnt++ )
+	{
+		die1.roll();
+		die2.roll();
+
+		cout << endl << "Die 1:" << die1.getVal()
+		<< endl << "Die 2:" << die2.getVal() << endl;
+
+		sumOfRoll = die1.getVal() + die2.getVal();
+		cout << "The sum of roll was " << sumOfRoll << endl;
+		if(sumOfRoll % 2 == 0 and evenOrOdd == 'E')
+		{
+			cout << "You won!\n\n";
+			pScore++;
+		}
+		else if( sumOfRoll % 2 == 1 and evenOrOdd == 'O')
+		{
+			cout << "You won!" << endl << endl;
+			pScore++;
+		}
+		else
+		{
+			cout << "Dealer won." << endl << endl;
+			dScore++;
+		}
+	}
+
+	cout << endl << endl 
+	<< "Your final score is " << pScore << " points." << endl
+	<< "Dealer's final score is " << dScore << " points." << endl;
+	if( pScore == dScore )
+	cout << "The game was a tie." << endl;
+	else if( pScore > dScore )
+	cout << "You won the game!" << endl;
+	else
+	cout << "The dealer won the game. " << endl;
+	return 0;
+}
+
+Die::Die()
+{
+	Die::roll();
+}
+
+void Die::roll()
+{
+	face = rand() % NUM_SIDES + 1;
+}
+
+int Die::getVal()
+{
+	return face;
+}
