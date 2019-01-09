@@ -1,0 +1,138 @@
+/***
+CSCI 240         Program 6     Fall 2017
+Programmer: Afifah Arif 
+Date Due: October 27, 2017
+Purpose: This program that will count the different types of characters in a text file.
+***/
+
+#include <iostream>
+#include <iomanip>
+#include <cctype>
+#include <fstream>
+#include <cstdlib>
+
+using namespace std;
+
+bool isvowel(char ch);
+bool isconsonant(char ch);
+
+int main()
+{
+	char ch;
+	int alphaCount = 0;
+	int upperCount = 0;
+	int lowerCount = 0;
+	int digitCount = 0;
+	int punctCount = 0;
+	int vowelCount = 0;
+	int spaceCount = 0; 
+	int commaCount = 0;
+	int quoteCount = 0; 
+	int otherCount = 0;
+	int periodCount = 0; 
+	int newLineCount = 0; 
+	int charCount = 0;
+	int questionCount = 0; 	
+	int consonantCount = 0;
+	int whiteSpaceCount = 0; 
+	int exclamationCount = 0;
+
+	ifstream infile; 
+	infile.open("input.txt"); //separate file(putty)
+
+	if(infile.fail()) 
+	{
+		cout << "input file did not open" << endl;
+		exit(-1); 
+	}
+
+	ch = infile.get();
+	while(infile) 
+	{
+		cout << ch;
+		if(isalpha(ch)) 
+		{               
+			alphaCount++;
+			if (isupper(ch))
+				upperCount++; 
+			else
+				lowerCount++;
+			if (isvowel(ch)) 
+				vowelCount++;  
+			else  
+				consonantCount++;
+		}
+		else if(isdigit(ch))
+			digitCount++;
+		else if(ispunct(ch)) 
+		{	        
+			punctCount++;
+			if(ch == ',') 
+				commaCount++;
+			else if (ch == '.')
+				periodCount++;
+			else if(ch == '\'' || ch == '\"')
+				quoteCount++;
+			else if(ch == '?')
+				questionCount++;
+			else if(ch == '!')
+				exclamationCount++;
+			else
+				otherCount++;
+		}
+		else if(isspace(ch)) 
+		{
+			whiteSpaceCount++;
+			if(ch == ' ' ) 
+				spaceCount++;
+		 	else 
+				newLineCount++;
+		}
+		charCount++; 
+		ch = infile.get();
+	}
+
+	cout << "\n\nTotal Number of Characters: " << setw(5) << charCount << endl << endl 
+		 << "Alphabetic Characters: " << setw(10) << alphaCount << endl
+		 << "  UpperCase: " << setw(20) << upperCount << endl
+		 << "  LowerCase: " << setw(20) << lowerCount << endl << endl
+		 << "  Vowels: " << setw(23) << vowelCount << endl
+		 << "  Consonants: " <<setw(19) <<  consonantCount << endl << endl
+		 << "Digit Characters: " << setw(15) << digitCount << endl << endl
+		 << "Punctuation Characters: " << setw(9) << punctCount << endl 
+		 << "  Commas:" << setw(24) << commaCount << endl
+		 << "  Periods:" << setw(23) << periodCount  << endl
+		 << "  Quotes:" << setw(24) << quoteCount << endl
+		 << "  Question Marks:" << setw(16) << questionCount << endl
+		 << "  Exclamation Points:" << setw(12) << exclamationCount << endl
+		 << "  Other:" << setw(25) << otherCount << endl << endl
+		 << "Whitespace Characters: " << setw(10) << whiteSpaceCount << endl
+		 << "  Spaces: " << setw(23) << spaceCount << endl
+		 << "  Newline Characters: " << setw(11) << newLineCount << endl;
+	infile.close();
+	return 0;
+}
+
+bool isvowel(char ch) 
+{
+	switch(tolower(ch)) 
+	{
+		case 'a' : return true;
+			break;
+		case 'e' : return true;
+			break;
+		case 'i' : return true;
+			break;
+		case 'o' : return true;
+			break;
+		case 'u' : return true;
+			break;
+		default : return false;
+	}
+}
+
+bool isconsonant(char ch) 
+{
+	if(isvowel(tolower(ch)) == false) 
+		return true;
+}
