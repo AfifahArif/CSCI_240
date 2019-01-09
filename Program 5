@@ -1,90 +1,93 @@
 /***
-CSCI 240         Program 5     Fall 2017
-Programmer: Afifah Arif
-Date Due: October 6, 2017
-Purpose: This program will manipulate and test an integer number.
+CSCI 240         Program 6     Fall 2017
+Programmer: Afifah Arif	
+Date Due: 10/20/17
+Purpose: This program will write the functions that can be used to manipulate 
+	and test an integer number.
 ***/
 
-#include <iostream>
-#include <iomanip>
+#include <iostream>   
+#include <iomanip>   
 #include <cstdlib>
 #include <ctime>
 
 using namespace std;
 
-const int NUM_VALS = 10;
+const int NUM_VALS = 10;       
 
-int reverse(int num); 
-bool isPrime(int num);
-bool isPalindrome(int num); 
-int sumDigits(int num);
+int reverse(int);
+bool isPalindrome(int);
+int sumDigits(int);
+bool isPrime(int);
 
 int main()
 {
-	int number;
-	int loopCount; 
-	
-	srand(1);
+	int number,         
+		loopCnt;         
 
-	for(loopCount = 1; loopCount <= NUM_VALS; loopCount++)
+	srand(31);
+
+	for (loopCnt = 1; loopCnt <= NUM_VALS; loopCnt++)
 	{
 		number = rand();
 
 		cout << "The number is " << number << endl
-		<< "----------------------------------------" << endl
-    	<< "Adding the digits result" << setw(16) << sumDigits( number ) << endl
-    	<< "Reversing the digits result" << setw(13) << reverse(number) << endl
-    	<< "Is the number a palindrome?" << setw(13) << (isPalindrome(number)? "Yes" : "No") << endl
-    	<< "Is the number prime?" << setw(20) << (isPrime(number)? "Yes" : "No") << endl
-		<< endl << endl;
+			<< "----------------------------------------" << endl
+			<< "Adding the digits result" << setw(16) << sumDigits(number) << endl
+			<< "Reversing the digits result" << setw(13) << reverse(number) << endl
+			<< "Is the number a palindrome?" << setw(13) << (isPalindrome(number) ? "Yes" : "No") << endl
+			<< "Is the number prime?" << setw(20) << (isPrime(number) ? "Yes" : "No") << endl
+			<< endl << endl;
 	}
+
+	cin.clear();
+	cin.get();
 	return 0;
 }
 
-int sumDigits(int num) 
+int reverse(int num) 
 {
-	int sum = 0, rem;
-	while(num != 0) 
-	{               
-		rem = num % 10;
-		sum += rem;
-		num /= 10;
-	}
-	return sum;
-}
-
-int reverse(int num)
-{
+	int digit;
 	int reversed = 0;
-	int quo, rem;
-	quo = num;  
-  	while (quo != 0) 
-	{
-    	rem = quo % 10;
-    	reversed = reversed * 10 + rem;
-    	quo /= 10;
-  	}
-	return reversed;
+	while (num != 0) 
+	{    
+		digit = num % 10;
+		num = num / 10;
+		reversed += digit;
+		if (num == 0)
+			return(reversed);			
+		reversed = reversed * 10;			
+	}
 }
 
 bool isPalindrome(int num) 
-{	
-	if (reverse(num) == num) 
-	return true;
-		else
-		return false;
+{       
+	int reversed = reverse(num);
+	if (reversed == num) 
+	{
+		return(true);
+	}				
+	return(false);
+}
+
+int sumDigits(int num) 
+{		
+	int sum = 0;
+	while (num != 0) 
+	{
+		sum += num % 10;
+		num = num / 10;			
+	}
+	return(sum);				
 }
 
 bool isPrime(int num) 
-{
-	int i;
-	
-	if (num % 2 == 0) 
-		return false;
-	for (i = 3; i*i <= num; i+=2) 
-	{
-		if (num % i == 0)
-		return false;
-	}
-	return true;
+{			
+		bool pCheck = true;
+		for (int i = 2; i < num && pCheck; i++) 
+		{
+			if (num % i == 0)
+			pCheck = false;
+		}
+		return(pCheck);			
 }
