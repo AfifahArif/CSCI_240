@@ -1,0 +1,34 @@
+/***
+CSCI 240     Program 3     Fall 2017
+Programmer: Afifah Arif
+Date Due: September 22, 2017
+Purpose: This program calculates and displays a course average for the CSCI 240 course. 
+***/
+
+#include <iostream>		// Libraries
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+	int x, y;
+	
+	int prog_avg;
+	cout << "*** Welcome to the Course Average Calculator ***";
+	cout << "\nEnter the Program Average: ";
+	cin >> x;
+	prog_avg = x;
+	
+	cout << "\nEnter the Test Average: ";
+	cin >> y;
+	int test_avg = y;
+	
+	int class_avg = (y * .7)+(x * .3);
+	
+	cout << "\n*** Grade Caculator Results ***";
+	cout << "\nProgram Average: " << prog_avg;
+	cout << "\nTest Average: " << test_avg;
+	cout << "\nClass Average: " << class_avg;
+	
+	return 0;
+}
