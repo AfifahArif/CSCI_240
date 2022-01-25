@@ -2,7 +2,7 @@
 CSCI 240     Program 8     Fall 2017
 Programmer: Afifah Arif
 Date Due: November 24, 2017
-Purpose: This program builds, sorts and prints arrays.
+Purpose: This program simulates a dice game.
 ***/
 
 #include <ctime>
